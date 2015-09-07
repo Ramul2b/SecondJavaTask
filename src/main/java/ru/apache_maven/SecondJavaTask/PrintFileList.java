@@ -15,29 +15,6 @@ import java.util.Collections;
  */
 
 public class PrintFileList{
-
-/**
- * Class that defines the analyzed directory.
- * @param path - the path-name of directory.
- * @return name of a given path-name of the specified directory or otherwise
- *  of the current directory.
- */
-	
-  public static File specificDirectory(String path){
-/** An object refers to the current directory. */
-     String userDirectory = System.getProperty("user.dir");
-			
-/** Set the directory for analysis. */
-     File directory;
-			
-/** Analyzed the current directory if the directory path is not specified. */
-     if(path.length() == 0)
-       directory = new File(userDirectory);
-     else
-       directory = new File(path);
-				
-     return directory;
-  }
   
 /**
  * Class create an array containing the names of directories and files.
@@ -139,7 +116,22 @@ public class PrintFileList{
   }
  	
   public static void main(String[] args){
-     sortAndWrite(createArray(specificDirectory(args[0])));
+     
+/** Analyzing of directory. */
+
+/** An object refers to the current directory. */
+    String userDirectory = System.getProperty("user.dir");
+	  			
+/** Set the directory for analysis. */
+    File directory;
+	  			
+/** Analyzed the current directory if the directory path is not specified. */
+	      if(args.length != 0)
+	        directory = new File(args[0]);
+	      else
+	        directory = new File(userDirectory);
+	      
+     sortAndWrite(createArray(directory));
   }
 
 }
